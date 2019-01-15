@@ -1,0 +1,28 @@
+    .thumbnail {
+        min-height: 300px; max-width: 280px;
+    }
+    .pad-left {
+        margin-left: 10px;
+    }
+    .well div {
+       color: #bbb
+    };
+
+    img {
+        border: 0;
+        width: 215px;
+        height: 280px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .fixthebug {
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+    }
+    
+

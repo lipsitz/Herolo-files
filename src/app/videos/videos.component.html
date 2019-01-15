@@ -1,0 +1,28 @@
+<div>
+    <div class="row">
+        <h1>HEROLO Cinema Videos
+            <button data-toggle="modal" data-target="#addModal" class="btn btn-success pull-right">Add Movie To list</button>
+        </h1>
+    </div>
+    <hr>
+    <div class="row">
+        <div *ngFor="let video of videos" class="fixthebug">
+            <div class="well hoverwell thumbnail ">
+                <app-video-thumbnail [video]=video></app-video-thumbnail>
+                <button data-toggle="modal" data-target="#editModal" (click)="modalDataFunc(video)" class="btn btn-primary">
+                    Edit</button>
+                <button data-toggle="modal" data-target="#deleteModal" (click)="modalDataFunc(video)" class="btn btn-danger pull-right">
+                    Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="editModal" class="modal fade" role="dialog">
+    <app-video-edit-modal [video]=modalData></app-video-edit-modal>
+</div>
+<div id="deleteModal" class="modal fade" role="dialog">
+    <app-video-delete-modal [video]=modalData></app-video-delete-modal>
+</div>
+<div id="addModal" class="modal fade" role="dialog">
+    <app-video-add-modal></app-video-add-modal>
+</div>

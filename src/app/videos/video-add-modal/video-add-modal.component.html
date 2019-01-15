@@ -1,0 +1,54 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Add movie to list</h4>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addForm" (ngSubmit)="addVideo(addForm.value)" autocomplete="off">
+        <div class="form-group" [ngClass]="{'error':title.invalid && title.touched}">
+          <label for="title">Title:</label>
+          <em *ngIf="title.invalid && title.dirty && title.errors.restrictedTitles">
+            this title alerdy exist : {{title.errors.restrictedTitles }}</em>
+          <em *ngIf="title.invalid && (title.dirty || mouseOverSubmit)">required</em>
+          <em *ngIf="title.invalid && title.dirty && title.errors.pattern">Only a-z small letters</em>
+          <input formControlName="title" name="title" id="title" type="text" class="form-control" placeholder="title..." />
+        </div>
+        <div class="form-group" [ngClass]="{'error':year.invalid && year.dirty}">
+          <label for="year">Year:</label>
+          <em *ngIf="year.invalid && year.dirty ">required</em>
+          <select formControlName="year" name="year" type="number" class="form-control" required placeholder="year...">
+            <option value=""></option>
+            <option *ngFor="let year of yearsArray" value="{{year}}">{{year}}</option>
+          </select>
+        </div>
+        <div class="form-group" [ngClass]="{'error':runtime.invalid && runtime.dirty}">
+          <label for="runtime">Runtime:</label>
+          <em *ngIf="runtime.invalid && (runtime.dirty ||mouseOverSubmit)">required</em>
+          <input formControlName="runtime" name="runtime" id="runtime" type="text" class="form-control" placeholder="runtime..." />
+        </div>
+        <div class="form-group" [ngClass]="{'error':genre.invalid && genre.dirty}">
+          <label for="genre">Genre:</label>
+          <em *ngIf="genre.invalid && (genre.dirty ||mouseOverSubmit)">required</em>
+          <input formControlName="genre" name="genre" id="genre" type="text" class="form-control" placeholder="genre..." />
+        </div>
+        <div class="form-group" [ngClass]="{'error':director.invalid && director.dirty}">
+          <label for="director">Director:</label>
+          <em *ngIf="director.invalid && (director.dirty || mouseOverSubmit)">required</em>
+          <input formControlName="director" name="director" id="director" type="text" class="form-control" placeholder="director..." />
+        </div>
+        <div class="form-group" [ngClass]="{'error':poster.invalid && poster.dirty}">
+          <label for="poster">Img src:</label>
+          <em *ngIf="poster.invalid && poster.dirty  && poster.errors.pattern">(Must be a png or jpg url)</em>
+          <em *ngIf="poster.invalid && poster.dirty">Required</em>
+          <input formControlName="poster" required pattern=".*\/.*.(png|jpg)" name="poster" id="poster" type="text"
+            class="form-control" placeholder="img src..." />
+        </div>
+        <span (mouseenter)="mouseOverSubmit=true" (mouseleave)="mouseOverSubmit=false">
+          <button type="submit" (click)="addVideo(addForm.value)" [disabled]="addForm.invalid" data-dismiss="modal"
+            class="btn btn-success">Save</button>
+        </span>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </form>
+
+    </div>
